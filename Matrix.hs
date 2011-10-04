@@ -7,8 +7,8 @@ add lm rm = zipWith (zipWith (+)) lm rm
 sub :: (Num a) => [[a]] -> [[a]] -> [[a]]
 sub lm rm = zipWith (zipWith (-)) lm rm
 
-transpose :: (Num a) => [[a]] -> [[a]]
-transpose (m:[]) = [ [e] | e <- m ]
+transpose :: [[a]] -> [[a]]
+transpose ([m]) = map (:[]) m
 transpose (m:ms) = zipWith (++) (transpose (m:[])) (transpose ms)
 
 cross :: (a -> b -> c) -> [a] -> [b] -> [[c]]
