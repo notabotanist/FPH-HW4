@@ -1,0 +1,20 @@
+
+Transcript of test of part A follows.
+
+matthew@nab92-ubuntu:~/haskellspace/4hw$ ghc -o prime -O prime.lhs
+matthew@nab92-ubuntu:~/haskellspace/4hw$ time ./prime sieve 30000
+350377
+
+real	6m33.476s
+user	6m10.367s
+sys	0m2.428s
+matthew@nab92-ubuntu:~/haskellspace/4hw$ time ./prime primes 30000
+350377
+
+real	0m0.321s
+user	0m0.200s
+sys	0m0.008s
+matthew@nab92-ubuntu:~/haskellspace/4hw$ exit
+
+Parts b-f are complete and ready to be loaded interactively into the
+interpreter.
