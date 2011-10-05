@@ -16,7 +16,7 @@ transpose (m:ms) = zipWith (++) (transpose (m:[])) (transpose ms)
 
 --applies a function to every possible pair of elements between the two lists
 cross :: (a -> b -> c) -> [a] -> [b] -> [[c]]
-cross f l r = [ map (f le) r | le <- l ]
+cross f l r = map (\le -> map (f le) r) l
 
 --multiplies nested lists assumed to be matrices
 mul :: (Num a) => [[a]] -> [[a]] -> [[a]]
