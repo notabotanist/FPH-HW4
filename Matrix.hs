@@ -1,19 +1,24 @@
 module Matrix
 where
 
+--adds nested lists assumed to be matrices
 add :: (Num a) => [[a]] -> [[a]] -> [[a]]
 add lm rm = zipWith (zipWith (+)) lm rm
 
+--subtracts nested lists assumed to be matrices
 sub :: (Num a) => [[a]] -> [[a]] -> [[a]]
 sub lm rm = zipWith (zipWith (-)) lm rm
 
+--transposes a nested list assumed to be a matrix
 transpose :: [[a]] -> [[a]]
 transpose ([m]) = map (:[]) m
 transpose (m:ms) = zipWith (++) (transpose (m:[])) (transpose ms)
 
+--applies a function to every possible pair of elements between the two lists
 cross :: (a -> b -> c) -> [a] -> [b] -> [[c]]
 cross f l r = [ map (f le) r | le <- l ]
 
+--multiplies nested lists assumed to be matrices
 mul :: (Num a) => [[a]] -> [[a]] -> [[a]]
 mul l r = cross (\x y -> sum $ zipWith (*) x y) l (transpose r)
 
@@ -33,6 +38,7 @@ instance (Num a) => Num (Matrix a) where
 --signum is so defined so the law (abs x) * (signum x) == x holds
   signum (Matrix (x:xs)) = Matrix $ identity (length x)
  
+--generates the identity matrix of size nxn
 identity :: (Num a) => Int -> [[a]]
 identity x | x <= 1 = [[(fromInteger 1)]]
            | otherwise = ((fromInteger 1) : replicate (x-1) (fromInteger 0))
